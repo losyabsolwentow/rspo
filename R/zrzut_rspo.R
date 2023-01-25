@@ -5,9 +5,11 @@
 #' @param page_number wartość liczbowa będąca numerem strony API. API bazy RSPO
 #' ma ograniczenie do zwracania 100 obserwacji na stronę. Ten argument pozwala
 #' wybrać, która strona ma zostać pobrana.
+#' @importFrom httr GET
+#' @importFrom jsonlite fromJSON
 #' @return data.frame
 get_df_api = function(api_adress = "https://api-rspo.mein.gov.pl/api/placowki",
-                    page_number) {
+                      page_number) {
   
   stopifnot(is.character(api_adress),
             is.numeric(page_number),
@@ -31,6 +33,8 @@ get_df_api = function(api_adress = "https://api-rspo.mein.gov.pl/api/placowki",
 #' przyjmuje się, że użytkownik chce pobrać całą bazę i raczej nie ma wiedzy o
 #' tym, co konkretnie jest w danych 100 obserwacjach, które można jednorazowo
 #' pobrać przez API.
+#' @importFrom dplyr bind_rows
+#' @export
 #' @return data.frame
 get_raw_rspo = function(max_page = 999999) {
   stopifnot(is.numeric(max_page),

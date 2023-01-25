@@ -1,0 +1,22 @@
+Package: rspo
+Title: Pakiet służący do pobierania zrzutu bazy RSPO
+Version: 1.0.0
+Authors@R: 
+    person(given = "Bartłomiej", family = "Płatkowski", role = c("aut", "cre"),
+    email = "bartek_platkowski@wp.pl")
+Description: Pakiet służy do pobierania zrzutu bazy RSPO (Rejestr Szkół i
+    Placówek Oświatowych) za pomocą dostępnego API. Za pomocą dostępnych funkcji
+    można zwrócić wyczyszczony i uporządkowany zbiór RSPO.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends:
+    R (>= 4.2.0)
+Imports:
+    dplyr (>= 1.0.10),
+    httr (>= 1.4.4),
+    jsonlite (>= 1.8.0)
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
