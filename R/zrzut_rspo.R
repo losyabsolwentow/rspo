@@ -1,30 +1,5 @@
 #' @title Tworzenie zrzutu bazy RSPO
 #' @details Funkcja zwraca przy użyciu API bazy RSPO surową ramkę danych dla
-#' zadanego numeru strony
-#' @param api_adress ciąg znaków będących linkiem do strony z API bazy RSPO
-#' @param page_number wartość liczbowa będąca numerem strony API. API bazy RSPO
-#' ma ograniczenie do zwracania 100 obserwacji na stronę. Ten argument pozwala
-#' wybrać, która strona ma zostać pobrana.
-#' @importFrom httr GET
-#' @importFrom jsonlite fromJSON
-#' @return data.frame
-get_df_api = function(api_adress = "https://api-rspo.mein.gov.pl/api/placowki",
-                      page_number) {
-  
-  stopifnot(is.character(api_adress),
-            is.numeric(page_number),
-            page_number > 0)
-  
-  link = paste0(api_adress, "/?page=", page_number)
-  
-  res = GET(link)
-  res = fromJSON(rawToChar(res$content))
-  res = as.data.frame(res$`hydra:member`, row.names = NULL)
-  
-  return(res)
-}
-#' @title Tworzenie zrzutu bazy RSPO
-#' @details Funkcja zwraca przy użyciu API bazy RSPO surową ramkę danych dla
 #' zadanego zakresu stron (użytkownik podaje tylko maksymalną wartość zakresu
 #' stron), czyli domyślnie dla całego zbioru.
 #' @param max_page liczba stron, które mają zostać pobrane z api. Domyślnie jest
@@ -33,9 +8,9 @@ get_df_api = function(api_adress = "https://api-rspo.mein.gov.pl/api/placowki",
 #' przyjmuje się, że użytkownik chce pobrać całą bazę i raczej nie ma wiedzy o
 #' tym, co konkretnie jest w danych 100 obserwacjach, które można jednorazowo
 #' pobrać przez API.
+#' @return data.frame
 #' @importFrom dplyr bind_rows
 #' @export
-#' @return data.frame
 get_raw_rspo = function(max_page = 999999) {
   stopifnot(is.numeric(max_page),
             max_page > 1)
@@ -58,5 +33,33 @@ get_raw_rspo = function(max_page = 999999) {
   } else {
     message(paste0("Pobrano obserwacje z ", i, " stron w API bazy RSPO"))
   }
+  
+  message(paste0("Liczba obserwacji w pobranym zbiorze: ", nrow(rspo)))
+  
   return(rspo)
+}
+#' @title Tworzenie zrzutu bazy RSPO
+#' @details Funkcja zwraca przy użyciu API bazy RSPO surową ramkę danych dla
+#' zadanego numeru strony
+#' @param api_adress ciąg znaków będących linkiem do strony z API bazy RSPO
+#' @param page_number wartość liczbowa będąca numerem strony API. API bazy RSPO
+#' ma ograniczenie do zwracania 100 obserwacji na stronę. Ten argument pozwala
+#' wybrać, która strona ma zostać pobrana.
+#' @return data.frame
+#' @importFrom httr GET
+#' @importFrom jsonlite fromJSON
+get_df_api = function(api_adress = "https://api-rspo.mein.gov.pl/api/placowki",
+                      page_number) {
+  
+  stopifnot(is.character(api_adress),
+            is.numeric(page_number),
+            page_number > 0)
+  
+  link = paste0(api_adress, "/?page=", page_number)
+  
+  res = GET(link)
+  res = fromJSON(rawToChar(res$content))
+  res = as.data.frame(res$`hydra:member`, row.names = NULL)
+  
+  return(res)
 }

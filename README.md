@@ -1,6 +1,6 @@
 # Pakiet `rspo`
 
-Pakiet `rspo` powstał w celu zwiększenia poziomu automatyzacji pobierania zrzutu z bazy RSPO (Rejestr Szkół i Placówek Oświatowych) dostępnej pod adresem: https://rspo.gov.pl/. A będzie to przydatne ze względu na potrzebę posiadania lokalnie kilku wersji bazy RSPO z różnych momentów w roku.
+Pakiet `rspo` powstał w celu zwiększenia poziomu automatyzacji pobierania zrzutu z bazy RSPO (Rejestr Szkół i Placówek Oświatowych) dostępnej pod adresem: https://rspo.gov.pl/. Będzie to przydatne ze względu na potrzebę posiadania lokalnie kilku wersji bazy RSPO z różnych momentów w roku.
 
 ## Instalacja
 
@@ -15,7 +15,7 @@ devtools::install_github("bartplat/rspo")
 
 Na razie pakiet pozwala na pobranie bazy RSPO za pomocą wywołania jednej funkcji. Niestety ze względu na ograniczenia w API (limit pobierania 100 rekordów z bazy na stronę) trwa to długo - w zależności od prędkości łącza i parametrów komputera 1 do 2 godzin. Natomiast, zaletą tego rozwiązania jest to, że można pobieranie mieć gdzieś w tle zamiast robić to ręcznie.
 
-### Pobeiranie surowej bazy RSPO
+### Pobieranie surowej bazy RSPO
 
 ``` r
 library(rspo)
@@ -23,10 +23,25 @@ rspo = get_raw_rspo()
 save(rspo, file = "rspo.RData")
 ```
 
+### Czyszczenie pobranej bazy
+
+Aby wygodnie używać bazy RSPO należy dokonać czyszczenia i przekształceń zmiennych, które można zrobić we własnym zakresie lub przy użyciu funkcji `clean_rspo()` - jak w przykładzie poniżej:
+
+```r
+rspo = clean_rspo(rspo)
+```
+
+Funkcja `clean_rspo()` dokonuje następujących przekształceń:
+
+* spłaszczenie ramki danych poprzez konwersję zmiennych zawierających zagnieżdżone ramki lub listy do wektorów;
+* usuwanie zbędnych kolumn;
+* konwersja wybranych zmiennych do formatu liczbowego lub daty (w surowym zbiorze są one przechowywane jako tekst);
+* tworzenie nowych kolumn
+
 ## Dalsze kierunki rozwoju
 
 Planowane kolejne funkcjonalności pakietu:
 
-1. Dołączenie do pakietu funkcji czyszczących zbiór tak, aby można było otrzymac gotowy do analiz/podpięć zbiór RSPO
-2. Stworzenie testów
-3. Dodanie możliwości okrojenia zapytania do kolumn potrzebnych użytkownikowi, co mogłoby przyspieszyć działanie funkcji tworzącej zrzut bazy
+1. Stworzenie testów
+2. Dodanie możliwości okrojenia zapytania do kolumn potrzebnych użytkownikowi, co mogłoby przyspieszyć działanie funkcji tworzącej zrzut bazy
+3. Sprawdzanie zgodności wersji API dla której napisano funkcje pakietu z wersją API na stronie internetowej SIO RSPO

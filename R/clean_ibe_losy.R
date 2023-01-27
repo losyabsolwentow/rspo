@@ -1,0 +1,1 @@
+# tu będą funkcje czyszczące zbiór do postaci używanej w ramach zespołu Losy2 w IBE
