@@ -3,7 +3,7 @@ Title: Pakiet służący do pobierania zrzutu bazy RSPO
 Version: 1.0.1
 Authors@R: 
     person(given = "Bartłomiej", family = "Płatkowski", role = c("aut", "cre"),
-    email = "bartek_platkowski@wp.pl")
+    email = "b.platkowski@ibe.edu.pl")
 Description: Pakiet służy do pobierania zrzutu bazy RSPO (Rejestr Szkół i
     Placówek Oświatowych) za pomocą dostępnego API. Za pomocą dostępnych funkcji
     można zwrócić wyczyszczony i uporządkowany zbiór RSPO.

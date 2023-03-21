@@ -8,7 +8,7 @@ Pakiet można zainstalować z githuba poniższymi komendami:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("bartplat/rspo")
+devtools::install_github("losyabsolwentow/rspo")
 ```
 
 ## Przykład użycia
