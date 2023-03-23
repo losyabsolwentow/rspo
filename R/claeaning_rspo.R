@@ -56,8 +56,8 @@ df_into_vector = function(x, listy = FALSE) {
       mutate(typPodmiotu = .data$typ$nazwa) %>% 
       select(-c("typ"))
   }
-  if ("stsusPublicznoPrawny" %in% nazwy) {
-    x$stsusPublicznoPrawny = x$stsusPublicznoPrawny[, 4]
+  if ("statusPublicznoPrawny" %in% nazwy) {
+    x$statusPublicznoPrawny = x$statusPublicznoPrawny[, 4]
   }
   if ("etapyEdukacji" %in% nazwy) {
     x$etapyEdukacji = unname(unlist(x$etapyEdukacji)[2])
