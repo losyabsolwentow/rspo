@@ -76,7 +76,7 @@ df_into_vector = function(x, listy = FALSE) {
       mutate(
         podmiotPrzekazujacyDaneDoRSPO_nazwa = .data$podmiotPrzekazujacyDaneDoRSPO$nazwa,
         podmiotPrzekazujacyDaneDoRSPO_typ = .data$podmiotPrzekazujacyDaneDoRSPO$typ.nazwa,
-        podmiotPrzekazujacyDaneDoRSPO_regon = .data$podmiotPrzekazujacyDaneDoRSPO$regon
+        podmiotPrzekazujacyDaneDoRSPO_regon = as.numeric(.data$podmiotPrzekazujacyDaneDoRSPO$regon)
       ) %>% 
       select(-c("podmiotPrzekazujacyDaneDoRSPO"))
   }
@@ -85,7 +85,7 @@ df_into_vector = function(x, listy = FALSE) {
       mutate(
         podmiotProwadzacy_nazwa = .data$podmiotProwadzacy$nazwa,
         podmiotProwadzacy_typ = .data$podmiotProwadzacy$typ.nazwa,
-        podmiotProwadzacy_regon = .data$podmiotProwadzacy$regon
+        podmiotProwadzacy_regon = as.numeric(.data$podmiotProwadzacy$regon)
       ) %>% 
       select(-c("podmiotProwadzacy"))
   }
