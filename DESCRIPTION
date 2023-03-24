@@ -1,6 +1,6 @@
 Package: rspo
 Title: Pakiet służący do pobierania zrzutu bazy RSPO
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: 
     person(given = "Bartłomiej", family = "Płatkowski", role = c("aut", "cre"),
     email = "b.platkowski@ibe.edu.pl")

@@ -38,10 +38,37 @@ Funkcja `clean_rspo()` dokonuje następujących przekształceń:
 * konwersja wybranych zmiennych do formatu liczbowego lub daty (w surowym zbiorze są one przechowywane jako tekst);
 * tworzenie nowych kolumn
 
+Dodatkowe przekształcenie można wykonać również dzięki użyciu funkcji `ibe_miejsc()`, która tworzy dodatkowe zmienne, które używane są w pracy z danymi sondażowymi w IBE. Funkcji tej należy używać w następującej kolejności w pracy ze zbiorem RSPO przy użyciu pakietu `dplyr`:
+
+```
+library(rspo)
+library(dplyr)
+
+rspo = get_raw_rspo()
+
+rspo = rspo %>% 
+  clean_rspo() %>% 
+  ibe_miejsc()
+
+save(rspo, file = "rspo.RData")
+```
+
+Lub przy użyciu `base` R:
+
+```
+library(rspo)
+
+rspo = get_raw_rspo()
+rspo = clean_rspo(rspo)
+rspo = ibe_miejsc(rspo)
+
+save(rspo, file = "rspo.RData")
+```
+
 ## Dalsze kierunki rozwoju
 
 Planowane kolejne funkcjonalności pakietu:
 
 1. Stworzenie testów
-2. Dodanie możliwości okrojenia zapytania do kolumn potrzebnych użytkownikowi, co mogłoby przyspieszyć działanie funkcji tworzącej zrzut bazy
+2. Dodanie możliwości okrojenia zapytania do kolumn potrzebnych użytkownikowi, co mogłoby przyspieszyć działanie funkcji tworzącej zrzut surowej bazy
 3. Sprawdzanie zgodności wersji API dla której napisano funkcje pakietu z wersją API na stronie internetowej SIO RSPO
