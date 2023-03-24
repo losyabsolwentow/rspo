@@ -40,7 +40,7 @@ Funkcja `clean_rspo()` dokonuje następujących przekształceń:
 
 Dodatkowe przekształcenie można wykonać również dzięki użyciu funkcji `ibe_miejsc()`, która tworzy dodatkowe zmienne, które używane są w pracy z danymi sondażowymi w IBE. Funkcji tej należy używać w następującej kolejności w pracy ze zbiorem RSPO przy użyciu pakietu `dplyr`:
 
-```
+```r
 library(rspo)
 library(dplyr)
 
@@ -55,7 +55,7 @@ save(rspo, file = "rspo.RData")
 
 Lub przy użyciu `base` R:
 
-```
+```r
 library(rspo)
 
 rspo = get_raw_rspo()
