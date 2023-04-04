@@ -2,8 +2,10 @@
 
 export(clean_rspo)
 export(get_raw_rspo)
+export(ibe_miejsc)
 importFrom(dplyr,"%>%")
 importFrom(dplyr,.data)
+importFrom(dplyr,across)
 importFrom(dplyr,bind_rows)
 importFrom(dplyr,case_when)
 importFrom(dplyr,mutate)
