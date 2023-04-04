@@ -37,7 +37,7 @@
 #' działania funkcji \code{[clean_rspo()]}
 #' @return data.frame
 #' @importFrom tibble is_tibble
-#' @importFrom dplyr mutate case_when across
+#' @importFrom dplyr %>% mutate .data case_when across
 #' @export
 ibe_miejsc = function(x) {
   stopifnot(is.data.frame(x) | is_tibble(x),
